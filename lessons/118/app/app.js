@@ -9,8 +9,9 @@ app.use(bodyParser.json())
 app.use(compression())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.get('/hello', (req, res) => {
-    res.status(200).json({ message: 'Hello World!' })
+app.get('/health', (req, res) => {
+    res.header({ "System-Health": true })
+    res.sendStatus(204)
 })
 
 const fibonacci = n => {

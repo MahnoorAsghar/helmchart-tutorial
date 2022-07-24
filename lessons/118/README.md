@@ -28,27 +28,23 @@ https://expressjs.com/en/starter/hello-world.html
 ## Outro -> watch aws api custom domain
 
 
-
-curl localhost:3000/hello
-
-curl -X POST \
--H "Content-Type: application/json" \
--d '{"index":12}' \
-localhost:3000/fib
-
 Find Fibonacci Number Of A Given Index
-
-https://expressjs.com/en/advanced/best-practice-performance.html
-https://expressjs.com/en/advanced/best-practice-performance.html#set-node_env-to-production
-https://www.axllent.org/docs/nodejs-service-with-systemd/
-
-env NODE_ENV=production && node app.js
-
-
-
 
 
 ## Create AMI image
+
+- create vpc `terraform init && terraform apply`
+
+
+
+
+
+
+
+
+
+
+
 ssh -i ~/.ssh/devops.pem ubuntu@23.22.184.71
 sudo apt update
 sudo apt install nodejs
