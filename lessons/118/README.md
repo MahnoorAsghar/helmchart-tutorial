@@ -8,7 +8,7 @@ Find Fibonacci Number Of A Given Index
 ## Private Integration Using VPC Link and Network Load Balancer - Example 2 - Terraform
 ## Private Integration Using VPC Link and Network Load Balancer with Auto Scaling Group - Example 3 - Console
 ## Private Integration Using VPC Link and Network Load Balancer with Auto Scaling Group - Example 3 - Terraform
-## Outro -> watch aws api custom domain 3 examples (terraform) ???
+
 
 
 ## Direct Public Integration - Example 1 - Console
