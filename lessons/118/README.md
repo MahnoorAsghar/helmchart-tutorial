@@ -1,58 +1,21 @@
 AWS API Gateway - EC2 Integration (Console + Terraform | Backend | Endpoint | HTTP | Tutorial)
 
-## intro
-- proxy vs regular paths in api gateway
-- if path, one path per ec2
-- add http healthcheck endpoint
-
-Autoscaling
-
-https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-with-private-integration.html
-
-node js app overview for autoscalling + health checks
-https://expressjs.com/en/starter/hello-world.html
-
-
-## ec2 integration with ec2 directtly (public integrations) (api gateway proxy * - all paths routed to ec2) (Console)
-## ec2 integration with ec2 directtly private integration with NLB and directlly attach ec2 (console)
-## ec2 integration with ec2 directtly (private integrations) (one path routed to 1 microservice /clients/<id>) (autoscalling group) (Console)
-## ec2 integration with nlb and autoscalling group (Console)
-- health check
-- intencive endpoint
-
-## ec2 integration with nlb (Terraform)
-## ec2 integration with nlb and autoscalling group (Terraform)
-
-## Outro -> watch aws api custom domain
-
-
 Find Fibonacci Number Of A Given Index
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Direct Public Integration - Example 1 - Console
+## Direct Public Integration - Example 1 - Terraform
+## Private Integration Using VPC Link and Network Load Balancer - Example 2 - Console
+## Private Integration Using VPC Link and Network Load Balancer - Example 2 - Terraform
+## Private Integration Using VPC Link and Network Load Balancer with Auto Scaling Group - Example 3 - Console
+## Private Integration Using VPC Link and Network Load Balancer with Auto Scaling Group - Example 3 - Terraform
+## Outro -> watch aws api custom domain 3 examples (terraform) ???
 
 
 ## Direct Public Integration - Example 1 - Console
 
-- create vpc `terraform init && terraform apply`
+- create vpc
+  - terraform init
+  - terraform apply
 - create sg (my-app-example-1)
   - allow 22 from anywhere ip v4, Allow SSH
   - allow 8080 from anywhere ip v4, Allow API Public Access
