@@ -10,7 +10,7 @@ app.use(compression())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/hello', (req, res) => {
-    res.json({ message: 'Hello World!' })
+    res.status(200).json({ message: 'Hello World!' })
 })
 
 const fibonacci = n => {
@@ -22,7 +22,7 @@ const fibonacci = n => {
 
 app.post('/fib', (req, res) => {
     const fibIndex = req.body.index
-    res.json({ index: fibIndex })
+    res.status(202).json({ index: fibIndex })
 
     console.log("Fibonacci number:", fibonacci(fibIndex))
 })
