@@ -21,9 +21,9 @@ const fibonacci = n => {
     return fibonacci(n - 1) + fibonacci(n - 2)
 }
 
-app.post('/fib', (req, res) => {
+app.post('/fibonacci', (req, res) => {
     const fibIndex = req.body.index
-    res.status(202).json({ index: fibIndex })
+    res.status(202).json({ index: fibIndex, result: "calculating..." })
 
     console.log("Fibonacci number:", fibonacci(fibIndex))
 })
