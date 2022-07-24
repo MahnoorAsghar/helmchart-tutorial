@@ -1,10 +1,12 @@
 const express = require('express')
+const compression = require('compression')
 const bodyParser = require('body-parser')
 
 const app = express()
-const port = 3000
+const port = 8080
 
 app.use(bodyParser.json())
+app.use(compression())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/hello', (req, res) => {
@@ -22,10 +24,11 @@ app.post('/fib', (req, res) => {
     const fibIndex = req.body.index
 
     const fibNumber = fibonacci(fibIndex)
+    console.log("fibNumber", fibNumber)
 
-    res.json({ index: fibIndex, number: fibNumber })
+    res.json({ index: fibIndex })
 })
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`App listening on port ${port}`)
 })
