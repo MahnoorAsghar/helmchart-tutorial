@@ -34,22 +34,19 @@ Find Fibonacci Number Of A Given Index
 ## Create AMI image
 
 - create vpc `terraform init && terraform apply`
+- create sg (my-app-ami)
+  - allow 22 from anywhere ip v4, Allow SSH
+- create ec2 instance in public subnet (my-app-ami)
+- create keypair devops (rsa since ED25519 not for windows)
+- sudo chmod 600 ~/Downloads/devops.pem
+- ssh -i ~/Downloads/devops.pem ubuntu@3.87.168.222
+- sudo apt update
+- sudo apt -y install nodejs npm
+- cd /opt
+- sudo git clone https://github.com/antonputra/tutorials.git
+- sudo chown -R ubuntu:ubuntu /opt/tutorials/
 
 
-
-
-
-
-
-
-
-
-
-ssh -i ~/.ssh/devops.pem ubuntu@23.22.184.71
-sudo apt update
-sudo apt install nodejs
-node --version
-sudo apt install npm
 
 sudo mkdir /opt/my-app
 sudo vim app.js
