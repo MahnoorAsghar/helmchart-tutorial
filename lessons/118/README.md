@@ -12,8 +12,6 @@ https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-wit
 node js app overview for autoscalling + health checks
 https://expressjs.com/en/starter/hello-world.html
 
-## Create AMI image
-- use public subnet to create ami image
 
 ## ec2 integration with ec2 directtly (public integrations) (api gateway proxy * - all paths routed to ec2) (Console)
 ## ec2 integration with ec2 directtly private integration with NLB and directlly attach ec2 (console)
@@ -31,31 +29,44 @@ https://expressjs.com/en/starter/hello-world.html
 Find Fibonacci Number Of A Given Index
 
 
-## Create AMI image
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Direct Public Integration - Example 1 - Console
 
 - create vpc `terraform init && terraform apply`
-- create sg (my-app-ami)
+- create sg (my-app-example-1)
   - allow 22 from anywhere ip v4, Allow SSH
-- create ec2 instance in public subnet (my-app-ami)
+  - allow 8080 from anywhere ip v4, Allow API Public Access
+- create ec2 instance in public subnet (my-app-example-1)
 - create keypair devops (rsa since ED25519 not for windows)
 - sudo chmod 600 ~/Downloads/devops.pem
 - ssh -i ~/Downloads/devops.pem ubuntu@3.87.168.222
 - sudo apt update
 - sudo apt -y install nodejs npm
 - cd /opt
-- sudo git clone https://github.com/antonputra/tutorials.git
+- sudo git clone -b 118 https://github.com/antonputra/tutorials.git
 - sudo chown -R ubuntu:ubuntu /opt/tutorials/
-
-
-
-sudo mkdir /opt/my-app
-sudo vim app.js
-sudo vim package.json
-sudo vim package-lock.json
-
-sudo chown -R ubuntu:ubuntu /opt/my-app
-
-npm ci
+- cd tutorials/lessons/118/app/
+- npm ci
 
 node app.js
 
@@ -125,8 +136,10 @@ curl -i https://2r5opzgzx1.execute-api.us-east-1.amazonaws.com/staging/hello
 
 curl http://54.196.54.111:8080/hello
 
+## Direct Public Integration - Example 1 - Terraform
 
-## ec2 integration with ec2 directtly private integration with NLB and directlly attach ec2 (console)
+## Private Integration Using VPC Link and Network Load Balancer - Example 2 - Console
+
 - create ec2 in private subnet (my-app-example-2)
 - use new security group (my-app-example-2) (VPC CIDR as source for health check)
 - create nlb (80)
@@ -144,6 +157,12 @@ curl -i https://2r5opzgzx1.execute-api.us-east-1.amazonaws.com/staging/hello
 create custom domain "api.devopsbyexample.io"
 
 curl -i https://api.devopsbyexample.io/hello
+
+## Private Integration Using VPC Link and Network Load Balancer - Example 2 - Terraform
+
+## Private Integration Using VPC Link and Network Load Balancer with Auto Scaling Group - Example 3 - Console
+
+## Private Integration Using VPC Link and Network Load Balancer with Auto Scaling Group - Example 3 - Terraform
 
 
 
