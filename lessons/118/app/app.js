@@ -15,18 +15,16 @@ app.get('/hello', (req, res) => {
 
 const fibonacci = n => {
     if (n <= 1) {
-        return n;
+        return n
     }
-    return fibonacci(n - 1) + fibonacci(n - 2);
-};
+    return fibonacci(n - 1) + fibonacci(n - 2)
+}
 
 app.post('/fib', (req, res) => {
     const fibIndex = req.body.index
-
-    const fibNumber = fibonacci(fibIndex)
-    console.log("fibNumber", fibNumber)
-
     res.json({ index: fibIndex })
+
+    console.log("Fibonacci number:", fibonacci(fibIndex))
 })
 
 app.listen(port, () => {
