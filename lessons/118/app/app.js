@@ -1,13 +1,10 @@
 const express = require('express')
-const compression = require('compression')
 const bodyParser = require('body-parser')
 
 const app = express()
 const port = 8080
 
 app.use(bodyParser.json())
-app.use(compression())
-app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/health', (req, res) => {
     res.header({ "System-Health": true })
