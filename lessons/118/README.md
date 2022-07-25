@@ -160,7 +160,13 @@ DELETE:
 
 ## Private Integration Using VPC Link and Network Load Balancer - Example 2 - Terraform
 
-
+- create `9-sg-example-2.tf`
+- create `10-ec2-example-2.tf`
+- create `11-nlb-example-2.tf`
+- create `12-api-gw-example-2.tf`
+- create `13-certificate-example-2.tf`
+- create `14-custom-domain-name-example-2.tf`
+terrafirm apply
 
 
 
