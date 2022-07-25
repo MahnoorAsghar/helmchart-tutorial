@@ -1,6 +1,7 @@
 AWS API Gateway - EC2 Integration (Console + Terraform | Backend | Endpoint | HTTP | Tutorial)
 
 Find Fibonacci Number Of A Given Index
+For intro, one screen with title and image/diagram
 
 ## Direct Public Integration - Example 1 - Console
 ## Direct Public Integration - Example 1 - Terraform
@@ -17,35 +18,32 @@ Find Fibonacci Number Of A Given Index
   - cd terraform
   - terraform init
   - terraform apply
-- create sg (my-app-example-1)
-  - allow 22 from anywhere ip v4, Allow SSH
-  - allow 8080 from anywhere ip v4, Allow API Public Access
+- create sg (my-app-example-1) Allow API Access
+  - allow 22 from anywhere ip v4
+  - allow 8080 from anywhere ip v4
 - create ec2 instance in public subnet (my-app-example-1)
 - create keypair devops (rsa since ED25519 not for windows)
 - sudo chmod 600 ~/Downloads/devops.pem
-- ssh -i ~/Downloads/devops.pem ubuntu@3.87.168.222
+- ssh -i ~/Downloads/devops.pem ubuntu@54.198.70.161
 - sudo apt update
 - sudo apt -y install nodejs npm
 - cd /opt
 - sudo git clone -b 118 https://github.com/antonputra/tutorials.git
 - sudo chown -R ubuntu:ubuntu /opt/tutorials/
-- cd tutorials/lessons/118/app/
+- cd tutorials/lessons/118/my-app/
 - npm ci
 
-node app.js
-
-
 Create 
+check node with `which node`
 sudo vim /etc/systemd/system/my-app.service
-check node with which node
 
 [Unit]
 Description=My App
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/node /opt/my-app/app.js
-WorkingDirectory=/opt/my-app/
+ExecStart=/usr/bin/node /opt/tutorials/lessons/118/my-app/app.js
+WorkingDirectory=/opt/tutorials/lessons/118/my-app/
 
 User=nobody
 Group=nogroup
@@ -68,39 +66,61 @@ SyslogIdentifier=my-app
 Restart=always
 RestartSec=10
 
-
 [Install]
 WantedBy=multi-user.target
 
-sudo systemctl enable my-app.service
-sudo systemctl start my-app.service
-sudo systemctl status my-app.service
+`sudo systemctl enable my-app.service`
+`sudo systemctl start my-app.service`
+`sudo systemctl status my-app.service`
 
-if exited check errors
-journalctl -u my-app -f --no-pager
+- if exited check errors
+`journalctl -u my-app -f --no-pager`
 
+curl -i http://<ip>:8080/health
 
-curl -i -X POST -H "Content-Type: application/json" -d '{"index":40}' localhost:8080/fib
-curl -i localhost:8080/hello
+- create api gateway
+  - HTTP API
+  - API name: api-gw-example-1
+  - Skip routes
+  - Stage name: prod
 
-create ami "my-app-v1"
+- create route `/{proxy+}`
+- create integration
+  - HTTP URI
+  - URL: http://<ip>:8080/{proxy}
 
-delete ec2 in public subnet
-create ec2 based on this instance in private subnet (sg?? keep or new one? if you need to debug and ssh, smm??)
+- test with curl
+  `curl -i https://5e9hz9mqri.execute-api.us-east-1.amazonaws.com/prod/health`
 
+- create ami for terraform `my-app-v1`
 
-https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-set-up-simple-proxy.html
-
-{proxy+}
-
-http://10.0.5.69:8080/{proxy}
-
-curl -i https://2r5opzgzx1.execute-api.us-east-1.amazonaws.com/staging/hello
-
-
-curl http://54.196.54.111:8080/hello
+DELETE:
+- EC2 - my-app-example-1
+- SG - my-app-example-1
+- API GW - api-gw-example-1
 
 ## Direct Public Integration - Example 1 - Terraform
+
+- create `6-sg-example-1.tf`
+- create `7-ec2-example-1.tf`
+- create `8-api-gw-example-1.tf`
+
+
+terraform apply
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Private Integration Using VPC Link and Network Load Balancer - Example 2 - Console
 
@@ -141,3 +161,11 @@ curl -X POST \
 -H "Content-Type: application/json" \
 -d '{"index":4}' \
 https://api.devopsbyexample.io/fib
+
+
+
+
+DELETE AT THE END:
+- AMI - my-app-v1
+- Volumes
+- key pairs
