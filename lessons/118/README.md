@@ -104,45 +104,66 @@ DELETE:
 - create `6-sg-example-1.tf`
 - create `7-ec2-example-1.tf`
 - create `8-api-gw-example-1.tf`
-
-
 terraform apply
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- run
+`curl -i https://933acqsps8.execute-api.us-east-1.amazonaws.com/prod/health`
+open ec2
+open api gateway
 
 ## Private Integration Using VPC Link and Network Load Balancer - Example 2 - Console
 
-- create ec2 in private subnet (my-app-example-2)
-- use new security group (my-app-example-2) (VPC CIDR as source for health check)
-- create nlb (80)
+- create sg (my-app-example-2) Allow API Access
+  - allow 8080 from VPC CIDR (Allow Health Checks)
+- create ec2 instance in private subnet using ami (my-app-example-2)
 - create target group (8080) + instance id
+  - my-app-example-2
+  - Protocol: TCP
+  - PORT: 8080
+  - Health Checks: HTTP, /health
+- create nlb (8080)
+  - my-app-example-2
+  - internal
+  - Listnere: 8080
 - wait till nlb is provisioned
-
+- create api gateway
+  - HTTP API
+  - API name: api-gw-example-2
+  - Skip routes
+  - Stage name: staging
 - create vpc link
-- create routes
-{proxy+}
-
-curl -i https://2r5opzgzx1.execute-api.us-east-1.amazonaws.com/staging/hello
-
+  - my-app-example-2
+  - 2 private subnets
+  - SG - my-app-example-2
 
 
-create custom domain "api.devopsbyexample.io"
+- create routes `/{proxy+}`
+- create integration
+  - Private resource
+- create certificate for `api.antonputra.com`
+- create custom domain "api.antonputra.com"
+- create api mapping
+- create ALIAS record for api.antonputra.com
+- dig api.antonputra.com
+curl -i https://api.antonputra.com/health
 
-curl -i https://api.devopsbyexample.io/hello
+
+DELETE:
+- Load balancer - my-app-example-2
+- Target Group - my-app-example-2
+- EC2 - my-app-example-2
+- Custom domain - api.antonputra.com
+- API GW - api-gw-example-2
+- VPC link - my-app-example-2
+- Certificate - api.antonputra.com
+- ALIAS + cert records
+- SG - my-app-example-2
 
 ## Private Integration Using VPC Link and Network Load Balancer - Example 2 - Terraform
+
+
+
+
+
 
 ## Private Integration Using VPC Link and Network Load Balancer with Auto Scaling Group - Example 3 - Console
 
