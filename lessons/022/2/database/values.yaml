@@ -5,10 +5,12 @@
 replicaCount: 1
 
 image:
-  repository: nginxinc/nginx-unprivileged
+  repository: alpine:3.16.0
+  # repository: nginxinc/nginx-unprivileged
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
+  command: [ "/bin/sh", "-c", "echo hello from db && sleep 1d"]
 
 imagePullSecrets: []
 nameOverride: ""
