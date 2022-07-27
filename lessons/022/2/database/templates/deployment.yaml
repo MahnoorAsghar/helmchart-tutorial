@@ -40,7 +40,7 @@ spec:
               protocol: TCP
           env:
           - name: ALLOW_EMPTY_PASSWORD
-          - value: "yes"
+            value: "yes"
           #livenessProbe:
           #  httpGet:
           #    path: /
