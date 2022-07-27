@@ -5,11 +5,11 @@
 replicaCount: 1
 
 image:
-  repository: mongo
-  # repository: busybox ubi8/ubi-minimal nginx alpine nginxinc/nginx-unprivileged
+  repository: bitnami/mysql
+  # repository: mongo busybox ubi8/ubi-minimal nginx alpine nginxinc/nginx-unprivileged
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "5.0.9"
+  tag: "latest"
   # command: [ "/bin/sh", "-c", "echo hello && sleep 1d"]
   # command: ["sleep", "3600"]
 
