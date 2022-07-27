@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: ubi8/nginx-120
+  repository: rhel:rhel7
   # repository: nginx
   # repository: alpine
   # repository: nginxinc/nginx-unprivileged
