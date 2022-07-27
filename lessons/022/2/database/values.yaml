@@ -10,7 +10,7 @@ image:
   # repository: nginxinc/nginx-unprivileged
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "1.22.0"
   # command: [ "/bin/sh", "-c", "echo hello && sleep 1d"]
 
 imagePullSecrets: []
