@@ -5,13 +5,13 @@
 replicaCount: 1
 
 image:
-  repository: rhel
+  repository: ubi8/ubi-minimal
   # repository: nginx
   # repository: alpine
   # repository: nginxinc/nginx-unprivileged
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "rhel7"
+  tag: ""
   # command: [ "/bin/sh", "-c", "echo hello && sleep 1d"]
 
 imagePullSecrets: []
