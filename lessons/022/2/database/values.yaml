@@ -5,16 +5,16 @@
 replicaCount: 1
 
 image:
-  repository: busybox
+  # repository: busybox
   # repository: ubi8/ubi-minimal
-  # repository: nginx
+  repository: nginx
   # repository: alpine
   # repository: nginxinc/nginx-unprivileged
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
   # command: [ "/bin/sh", "-c", "echo hello && sleep 1d"]
-  command: ["sleep", "3600"]
+  # command: ["sleep", "3600"]
 
 imagePullSecrets: []
 nameOverride: ""
