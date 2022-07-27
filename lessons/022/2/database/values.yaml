@@ -14,6 +14,7 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: "8.6"
   # command: [ "/bin/sh", "-c", "echo hello && sleep 1d"]
+  command: ["sleep", "3600"]
 
 imagePullSecrets: []
 nameOverride: ""
