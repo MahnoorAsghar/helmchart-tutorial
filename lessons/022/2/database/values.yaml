@@ -5,7 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: ubi8/ubi-minimal
+  repository: busybox
+  # repository: ubi8/ubi-minimal
   # repository: nginx
   # repository: alpine
   # repository: nginxinc/nginx-unprivileged
