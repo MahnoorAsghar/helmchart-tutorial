@@ -38,6 +38,9 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
+          env:
+            - name: ALLOW_EMPTY_PASSWORD
+            - value: yes
           #livenessProbe:
           #  httpGet:
           #    path: /
